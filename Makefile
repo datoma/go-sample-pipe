@@ -1,6 +1,6 @@
 BASE_TAG=$(shell git rev-parse --short HEAD)
 # image name for docker
-IMAGE_NAME=charlires/webapp
+IMAGE_NAME=mho/webapp
 # app name for go packages
 APP_NAME=webapp
 # base golang image tag
@@ -30,7 +30,7 @@ build-test:
 
 test-unit:
 	@echo ":::running unit tests"
-	docker run --rm -i -v $(shell pwd)/report:/go/src/${APP_NAME}/report $(IMAGE_NAME)-test:$(BASE_TAG)
+	docker run --rm -i -v $(shell pwd)/:/go/src/${APP_NAME}/ $(IMAGE_NAME)-test:$(BASE_TAG)
 
 run:
 	@echo ":::running dev environment"

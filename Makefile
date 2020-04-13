@@ -26,7 +26,7 @@ build:
 
 build-test:
 	@echo ":::building test image"
-	docker build --rm -v $(shell pwd)/report:/go/src/${APP_NAME}/report -f Test.Dockerfile $(BUILD_TEST_ARGS) -t $(IMAGE_NAME)-test:$(BASE_TAG) .
+	docker build -f Test.Dockerfile $(BUILD_TEST_ARGS) -t $(IMAGE_NAME)-test:$(BASE_TAG) .
 
 test-unit:
 	@echo ":::running unit tests"

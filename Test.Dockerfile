@@ -5,4 +5,4 @@ FROM ${IMAGE_NAME}-base:${BASE_TAG}
 RUN mkdir ./app/report
 RUN go get -u github.com/jstemmer/go-junit-report
 
-CMD go test ./app/... -v 2>&1 | go-junit-report > report.xml
+CMD go test ./app/... -v 2>&1 | go-junit-report > report/report.xml

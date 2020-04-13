@@ -26,7 +26,7 @@ build:
 
 build-test:
 	@echo ":::building test image"
-	docker create -ti --name test-cont -f Test.Dockerfile $(BUILD_TEST_ARGS) -t $(IMAGE_NAME)-test:$(BASE_TAG) .
+	docker build --rm -f Test.Dockerfile $(BUILD_TEST_ARGS) -t $(IMAGE_NAME)-test:$(BASE_TAG) .
 
 test-unit:
 	@echo ":::running unit tests"

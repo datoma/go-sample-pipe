@@ -11,11 +11,7 @@ pipeline {
       steps {
         sh 'make build-test'
         sh 'make test-unit'
-        sh 'ls'
-        sh 'ls /tmp/jenkins_share/gosamplepipe/report/'
         sh 'cp /tmp/jenkins_share/gosamplepipe/report/report.xml report/'
-        sh 'ls -la report'
-        sh 'which junit'
         junit 'report/report.xml'
       }
     }
@@ -23,6 +19,11 @@ pipeline {
       steps {
         sh 'make build'
       }
+    }
+  }
+  post {
+    always {
+      sh 'make cleanup'
     }
   }
 }

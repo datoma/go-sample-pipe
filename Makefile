@@ -30,12 +30,15 @@ build-test:
 
 test-unit:
 	@echo ":::running unit tests"
-	docker run --rm -i -v /tmp/jenkins_share/gosamplepipe/report:/go/src/${APP_NAME}/report $(IMAGE_NAME)-test:$(BASE_TAG)
+	docker run --rm --name $(APP_NAME)-test -i -v /tmp/jenkins_share/gosamplepipe/report:/go/src/${APP_NAME}/report $(IMAGE_NAME)-test:$(BASE_TAG)
 
 run:
 	@echo ":::running dev environment"
-	docker run --rm -it \
-		-p $(PORT):80 \
-		-v `pwd`:/go/src/$(APP_NAME) \
-		-w /go/src/$(APP_NAME) \
-		golang:$(GOLANG_TAG) go run app/main.go
+	docker run --rm --name $(APP_NAME) -it -p $(PORT):80 -v `pwd`:/go/src/$(APP_NAME) -w /go/src/$(APP_NAME) golang:$(GOLANG_TAG) go run app/main.go
+
+cleanup:
+	@echo ":::cleaning up
+	docker rm $(APP_NAME)-test
+	docker rm $(APP_NAME)
+	docker rmi $(IMAGE_NAME)-test:$(BASE_TAG)
+	docker rmi $(IMAGE_NAME)-base:$(BASE_TAG)

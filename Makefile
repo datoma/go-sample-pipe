@@ -43,4 +43,4 @@ cleanup:
 	docker rmi $(IMAGE_NAME)-test:$(BASE_TAG) || true
 	docker rmi $(IMAGE_NAME)-base:$(BASE_TAG) || true
 	docker rmi $(IMAGE_NAME):$(BASE_TAG) || true
-	rm /tmp/jenkins_share/gosamplepipe/report/*
+	sudo rm /tmp/jenkins_share/gosamplepipe/report/*

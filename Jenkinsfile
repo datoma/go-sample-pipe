@@ -16,7 +16,7 @@ pipeline {
         sh 'cp /tmp/jenkins_share/gosamplepipe/report/report.xml report/'
         sh 'ls -la report'
         sh 'which junit'
-        junit '/tmp/jenkins_share/gosamplepipe/report/report.xml'
+        junit 'report/report.xml'
       }
     }
     stage('build image') {

@@ -12,6 +12,7 @@ pipeline {
         sh 'make build-test'
         sh 'make test-unit'
         sh 'ls'
+        sh 'ls /tmp/jenkins_share/gosamplepipe/report/'
         junit '/tmp/jenkins_share/gosamplepipe/report/report.xml'
       }
     }

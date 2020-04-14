@@ -37,7 +37,7 @@ run:
 	docker run --rm --name $(APP_NAME) -it -p $(PORT):80 -v `pwd`:/go/src/$(APP_NAME) -w /go/src/$(APP_NAME) golang:$(GOLANG_TAG) go run app/main.go
 
 cleanup:
-	@echo ":::cleaning up
+	@echo ":::cleaning up"
 	docker rm $(APP_NAME)-test
 	docker rm $(APP_NAME)
 	docker rmi $(IMAGE_NAME)-test:$(BASE_TAG)

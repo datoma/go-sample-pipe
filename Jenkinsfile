@@ -23,7 +23,11 @@ pipeline {
   }
   post {
     always {
-      sh 'make cleanup'
+      try {
+        sh 'make cleanup'
+      } catch(error) {
+        currentBuild.result = 'UNSTABLE'
+      }
     }
   }
 }

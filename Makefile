@@ -38,7 +38,7 @@ run:
 
 cleanup:
 	@echo ":::cleaning up"
-	docker rm $(APP_NAME)-test
-	docker rm $(APP_NAME)
-	docker rmi $(IMAGE_NAME)-test:$(BASE_TAG)
-	docker rmi $(IMAGE_NAME)-base:$(BASE_TAG)
+	docker rm $(APP_NAME)-test || true
+	docker rm $(APP_NAME) || true
+	docker rmi $(IMAGE_NAME)-test:$(BASE_TAG) || true
+	docker rmi $(IMAGE_NAME)-base:$(BASE_TAG) || true

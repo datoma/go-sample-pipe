@@ -1,5 +1,9 @@
 // this will start an executor on a Jenkins agent with the docker label
 pipeline {
+  environment {
+    registry = "https://nexus.blackboards.de/repository/reg-docker"
+    registryCredential = ‘jenkins-nexus’
+  }
   agent any
   stages {
     stage('build base image') {
@@ -31,6 +35,13 @@ pipeline {
     stage('build image') {
       steps {
         sh 'make build'
+      }
+    }
+    stage('Deploy Image') {
+      steps{    script {
+        docker.withRegistry( '', registryCredential ) {
+          dockerImage.push()
+        }
       }
     }
   }

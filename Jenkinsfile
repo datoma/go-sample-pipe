@@ -7,16 +7,6 @@ pipeline {
         sh 'make build-base'
       }
     }
-    stage('Code Quality') {
-      steps {
-        script {
-          def scannerHome = tool 'fosslinxsonar';
-          withSonarQubeEnv("Sonar") {
-            sh "${tool("fosslinxsonar")}/bin/sonar-scanner"
-          }
-        }
-      }
-    }
     stage('Sonarqube') {
       //environment {
       //  scannerHome = tool 'SonarQubeScanner'

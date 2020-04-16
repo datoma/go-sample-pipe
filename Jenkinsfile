@@ -7,6 +7,29 @@ pipeline {
         sh 'make build-base'
       }
     }
+    stage('Code Quality') {
+      steps {
+        script {
+          def scannerHome = tool 'fosslinxsonar';
+          withSonarQubeEnv("Sonar") {
+            sh "${tool("fosslinxsonar")}/bin/sonar-scanner"
+          }
+        }
+      }
+    }
+    stage('Sonarqube') {
+      //environment {
+      //  scannerHome = tool 'SonarQubeScanner'
+      //}
+      steps {
+        withSonarQubeEnv('Sonar') {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+    }
     stage('run tests') {
       steps {
         sh 'make build-test'

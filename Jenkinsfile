@@ -37,15 +37,15 @@ pipeline {
         sh 'make build'
       }
     }
-    stage('Deploy Image') {
-      steps{    
-        script {
-          docker.withRegistry( registry, registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
+    //stage('Deploy Image') {
+    //  steps{    
+    //    script {
+    //      docker.withRegistry( registry, registryCredential ) {
+    //        dockerImage.push()
+    //      }
+    //    }
+    //  }
+    //}
   }
   post {
     always {

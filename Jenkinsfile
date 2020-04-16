@@ -2,7 +2,7 @@
 pipeline {
   environment {
     registry = "https://nexus.blackboards.de/repository/reg-docker"
-    registryCredential = ‘jenkins-nexus’
+    registryCredential = "jenkins-nexus"
   }
   agent any
   stages {
@@ -46,6 +46,7 @@ pipeline {
         }
       }
     }
+  }
   post {
     always {
       sh 'make cleanup'

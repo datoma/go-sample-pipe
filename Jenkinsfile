@@ -27,9 +27,8 @@ pipeline {
     stage('run tests') {
       steps {
         sh 'make build-test'
-        sh 'make test-unit'
-        sh 'cp /tmp/jenkins_share/gosamplepipe/report/report.xml report/'
-        junit 'report/report.xml'
+        sh 'make test-unit && cat /tmp/jenkins_share/gosamplepipe/report/report.xml > report.xml'
+        junit 'report.xml'
       }
     }
     stage('build image') {
